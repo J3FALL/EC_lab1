@@ -5,8 +5,6 @@ import org.uncommons.watchmaker.framework.operators.AbstractCrossover;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class SimpleCrossover extends AbstractCrossover<Double[]> {
 
@@ -25,12 +23,13 @@ public class SimpleCrossover extends AbstractCrossover<Double[]> {
     private List<Double[]> wholeArithmeticRecombination(Double[] p1, Double[] p2) {
         ArrayList children = new ArrayList();
 
-        List<Double> child1 = Stream.of(p1)
-                .map(val -> val * alpha)
-                .collect(Collectors.toList());
-        List<Double> child2 = Stream.of(p2)
-                .map(val -> val * (1.0 - alpha))
-                .collect(Collectors.toList());
+        List<Double> child1 = new ArrayList<>();
+        List<Double> child2 = new ArrayList<>();
+
+        for (int idx = 0; idx < p1.length; idx++) {
+            child1.add(p1[idx] * alpha + p2[idx] * (1.0 - alpha));
+            child2.add(p1[idx] * alpha + p2[idx] * (1.0 - alpha));
+        }
 
         children.add(child1.toArray(new Double[0]));
         children.add(child2.toArray(new Double[0]));

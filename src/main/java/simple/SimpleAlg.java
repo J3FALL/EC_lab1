@@ -13,7 +13,7 @@ public class SimpleAlg {
     public static void main(String[] args) {
         int dimension = 2; // dimension of problem
         int populationSize = 10; // size of population
-        int generations = 10; // number of generations
+        int generations = 150; // number of generations
 
         Random random = new Random(); // random
 
