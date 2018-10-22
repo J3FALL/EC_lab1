@@ -11,8 +11,8 @@ import java.util.Random;
 
 public class SimpleAlg {
     public static void main(String[] args) {
-        int dimension = 10; // dimension of problem
-        int populationSize = 50; // size of population
+        int dimension = 100; // dimension of problem
+        int populationSize = 100; // size of population
         int generations = 10000; // number of generations
 
         Random random = new Random(); // random
@@ -21,7 +21,7 @@ public class SimpleAlg {
 
         ArrayList<EvolutionaryOperator<Double[]>> operators = new ArrayList<EvolutionaryOperator<Double[]>>();
         operators.add(new SimpleCrossover(0.7f));
-        operators.add(new SimpleMutation(0.7f, 0.7f));
+        operators.add(new SimpleMutation(0.9f, 0.1f));
 
         EvolutionPipeline<Double[]> pipeline = new EvolutionPipeline<>(operators);
         SelectionStrategy<Object> selection = new RouletteWheelSelection();

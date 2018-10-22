@@ -27,7 +27,7 @@ public class SimpleMutation implements EvolutionaryOperator<Double[]> {
     }
 
     private Double[] mutated(Double[] individ, Random random) {
-        if (random.nextInt() < mutatePopulationRate) {
+        if (random.nextDouble() < mutatePopulationRate) {
             return individ;
         } else {
             return Stream.of(individ)
@@ -38,7 +38,7 @@ public class SimpleMutation implements EvolutionaryOperator<Double[]> {
     }
 
     private Double newValue(Double oldValue, Random random) {
-        if (random.nextInt() < mutateValueRate) {
+        if (random.nextDouble() < mutateValueRate) {
             Double result = oldValue + random.nextGaussian() * mutationRange;
             return ensureRange(result);
         } else {
