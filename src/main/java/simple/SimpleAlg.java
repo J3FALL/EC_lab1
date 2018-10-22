@@ -21,7 +21,7 @@ public class SimpleAlg {
 
         ArrayList<EvolutionaryOperator<Double[]>> operators = new ArrayList<EvolutionaryOperator<Double[]>>();
         operators.add(new SimpleCrossover(0.7f));
-        operators.add(new SimpleMutation(0.7f));
+        operators.add(new SimpleMutation(0.7f, 0.7f));
 
         EvolutionPipeline<Double[]> pipeline = new EvolutionPipeline<>(operators);
         SelectionStrategy<Object> selection = new RouletteWheelSelection();

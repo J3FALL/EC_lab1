@@ -8,14 +8,15 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class SimpleMutation implements EvolutionaryOperator<Double[]> {
-    private float mutationRate;
-
+    private float mutatePopulationRate;
+    private float mutateValueRate;
     private int mutationRange = 2;
     private int min = -5, max = 5;
 
-    public SimpleMutation(float mutationRate) {
+    public SimpleMutation(float mutatePopulationRate, float mutateValueRate) {
         super();
-        this.mutationRate = mutationRate;
+        this.mutatePopulationRate = mutatePopulationRate;
+        this.mutateValueRate = mutateValueRate;
     }
 
     @Override
@@ -26,14 +27,18 @@ public class SimpleMutation implements EvolutionaryOperator<Double[]> {
     }
 
     private Double[] mutated(Double[] individ, Random random) {
-        return Stream.of(individ)
-                .map(val -> newValue(val, random))
-                .collect(Collectors.toList())
-                .toArray(new Double[0]);
+        if (random.nextInt() < mutatePopulationRate) {
+            return individ;
+        } else {
+            return Stream.of(individ)
+                    .map(val -> newValue(val, random))
+                    .collect(Collectors.toList())
+                    .toArray(new Double[0]);
+        }
     }
 
     private Double newValue(Double oldValue, Random random) {
-        if (random.nextInt() < mutationRate) {
+        if (random.nextInt() < mutateValueRate) {
             Double result = oldValue + random.nextGaussian() * mutationRange;
             return ensureRange(result);
         } else {
