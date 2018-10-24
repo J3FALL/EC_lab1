@@ -1,9 +1,11 @@
+package simple;
+
 import org.uncommons.watchmaker.framework.FitnessEvaluator;
 
 import java.util.List;
 import java.util.Random;
 
-public class FitnessFunction implements FitnessEvaluator<double[]> {
+public class FitnessFunction implements FitnessEvaluator<Double[]> {
     // don't change!!!!
 
     public FitnessFunction(int dimension) {
@@ -12,7 +14,7 @@ public class FitnessFunction implements FitnessEvaluator<double[]> {
 
     private int dimension;
 
-    public double getFitness(double[] solution, List<? extends double[]> list) {
+    public double getFitness(Double[] solution, List<? extends Double[]> list) {
         int n = dimension;
         double pi = Math.PI;
         double dn = 1.0 / n;
